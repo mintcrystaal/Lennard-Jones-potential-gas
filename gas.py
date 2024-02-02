@@ -3,11 +3,11 @@ from random import randint, random, seed, choice # random() -- gives a random nu
 
 
 # const
-DELT = 0.001 # 0.0001
+DELT = 0.001
 NPART = 100
 BOX = 10.0
 DELX = 1
-TMAX = DELT * 500 #0.0100
+TMAX = DELT * 500
 RBAD = 0.88
 DIM = 3
 
@@ -121,7 +121,6 @@ def init():
 
 		for d in range(DIM):
 			sumv[d] += v[d][i]
-			# sumv2c[d] += v[d][i] * v[d][i]
 		sumv2 += v2
 
 	for d in range(DIM):
@@ -210,24 +209,17 @@ init()
 make_file()
 CNT += 1
 t += DELT
-# e_n_list.append(e_n)
-# e_tot_list.append(e_tot)
-# temp_list.append(temp)
-
-# print(temp, "temp")
 
 while t <= TMAX:
 	force()
 	integrate()
-	# print(temp, "temp")
 
 	e_n_list = np.append(e_n_list, e_n)
 	e_tot_list = np.append(e_tot_list, e_tot)
 	temp_list = np.append(temp_list, temp)
 	v_tot = (sumv[0] ** 2 + sumv[1] ** 2 + sumv[2] ** 2)
-	# v_tot = v_tot ** 0.5
 	v_tot_list = np.append(v_tot_list, v_tot)
-	delt_e_list = np.append(delt_e_list, 0.0) #np.append(delt_e_list, ((e_tot - e_tot_was) / temp))
+	delt_e_list = np.append(delt_e_list, 0.0)
 	make_file()
 	t += DELT
 	CNT += 1
